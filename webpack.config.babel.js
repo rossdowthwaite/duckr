@@ -3,9 +3,9 @@ import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: __dirname + '/app/index.html',
+  template: path.join(__dirname, 'app/index.html'),
   filename: 'index.html',
-  inject: 'body'
+  inject: 'body',
 })
 
 const PATHS = {
@@ -20,8 +20,8 @@ process.env.BABEL_ENV = LAUNCH_COMMAND
 
 const productionPlugin = new webpack.DefinePlugin({
   'process.env': {
-    NODE_ENV: JSON.stringify('production')
-  }
+    NODE_ENV: JSON.stringify('production'),
+  },
 })
 
 const base = {
@@ -30,13 +30,13 @@ const base = {
   ],
   output: {
     path: PATHS.build,
-    filename: "index_bundle.js"
+    filename: 'index_bundle.js',
   },
   module: {
     loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"},
-      {test: /\.css$/, loader: 'style-loader!css-loader'}
-    ]
+      {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+      {test: /\.css$/, loader: 'style-loader!css-loader'},
+    ],
   },
 }
 
@@ -48,12 +48,12 @@ const developmentConfig = {
     inline: true,
     progress: true,
   },
-  plugins: [HTMLWebpackPluginConfig, new webpack.HotModuleReplacementPlugin()]
+  plugins: [HTMLWebpackPluginConfig, new webpack.HotModuleReplacementPlugin()],
 }
 
 const productionConfig = {
   devtool: 'cheap-module-source-map',
-  plugins: [HTMLWebpackPluginConfig, productionPlugin]
+  plugins: [HTMLWebpackPluginConfig, productionPlugin],
 }
 
 export default Object.assign({}, base,
