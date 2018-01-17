@@ -1,12 +1,13 @@
 import React from 'react'
-import { BrowserRouter, Route, hashHistory } from 'react-router-dom'
-import { MainContainer, HomeContainer } from '../containers'
+import { BrowserRouter, Route } from 'react-router-dom'
+import { MainContainer, HomeContainer, AuthenticateContainer } from '../containers'
 
 const routes = (
-  <BrowserRouter history={hashHistory}>
-    <BrowserRouter path='/' component={MainContainer}>
+  <BrowserRouter>
+    <MainContainer>
       <Route exact path='/' component={HomeContainer} />
-    </BrowserRouter>
+      <Route path='/auth' component={AuthenticateContainer} />
+    </MainContainer>
   </BrowserRouter>
 )
 
